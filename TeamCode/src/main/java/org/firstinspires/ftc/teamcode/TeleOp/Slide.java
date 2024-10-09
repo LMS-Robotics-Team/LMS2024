@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+// Todo: add encoders and use limit switches
+
 public class Slide {
     private static DcMotorEx viperSlideLeft, viperSlideRight;
 

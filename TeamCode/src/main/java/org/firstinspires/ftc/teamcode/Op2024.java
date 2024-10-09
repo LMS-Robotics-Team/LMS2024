@@ -8,13 +8,16 @@ import org.firstinspires.ftc.teamcode.TeleOp.Slide;
 public class Op2024 extends LinearOpMode {
     @Override
     public void runOpMode() {
-        telemetry.addData("Status", "Initialized");
-        telemetry.update();
-
+        // Init
         Slide.init(hardwareMap);
 
+        telemetry.addData("DEBUG", "Initialization Finished");
+        telemetry.update();
+
+        // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+        // Runs until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             Slide.handleInput(gamepad2.left_stick_y);
         }
