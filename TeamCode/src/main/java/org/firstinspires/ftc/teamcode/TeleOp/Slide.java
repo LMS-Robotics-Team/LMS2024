@@ -13,7 +13,7 @@ public class Slide {
 
     public static void init(@NonNull HardwareMap hardwareMap) {
         motorLeft = hardwareMap.get(DcMotorEx.class, "slideMotorLeft");
-        motorRight = hardwareMap.get(DcMotorEx.class, "SlideMotorRight");
+        motorRight = hardwareMap.get(DcMotorEx.class, "slideMotorRight");
         servoLeft = hardwareMap.get(Servo.class, "slideServoLeft");
         servoRight = hardwareMap.get(Servo.class, "slideServoRight");
 
