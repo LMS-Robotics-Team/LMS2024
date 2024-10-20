@@ -10,20 +10,14 @@ import org.firstinspires.ftc.teamcode.TeleOp.Drive;
 public class Op2024 extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-        // Init
         Slide.init(hardwareMap);
         Claw.init(hardwareMap);
         Drive.init(hardwareMap);
 
-        telemetry.addData("DEBUG", "Initialization Finished");
-        telemetry.update();
-
-        // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        // Runs until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            Slide.handleInput(gamepad2.left_stick_y);
+            Slide.handleInput(gamepad2.left_stick_y, gamepad2.left_bumper, gamepad2.right_bumper);
             Claw.handleInput(gamepad2.a);
             Drive.handleInput(gamepad1);
         }

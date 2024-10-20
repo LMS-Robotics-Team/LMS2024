@@ -3,24 +3,38 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 import androidx.annotation.NonNull;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-// Todo: add encoders and use limit switches
-
 public class Slide {
-    private static DcMotorEx viperSlideLeft, viperSlideRight;
+    private static DcMotorEx motorLeft, motorRight;
+    private static Servo servoLeft, servoRight;
+    private static final double SERVO_DEFAULT = 0, SERVO_CHANGE = 0.5;
 
     public static void init(@NonNull HardwareMap hardwareMap) {
-        viperSlideLeft = hardwareMap.get(DcMotorEx.class, "viperSlideLeft");
-        viperSlideRight = hardwareMap.get(DcMotorEx.class, "viperSlideRight");
+        motorLeft = hardwareMap.get(DcMotorEx.class, "slideMotorLeft");
+        motorRight = hardwareMap.get(DcMotorEx.class, "SlideMotorRight");
+        servoLeft = hardwareMap.get(Servo.class, "slideServoLeft");
+        servoRight = hardwareMap.get(Servo.class, "slideServoRight");
 
-        viperSlideLeft.setDirection(DcMotorSimple.Direction.FORWARD);
-        viperSlideRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorLeft.setDirection(DcMotorEx.Direction.FORWARD);
+        motorRight.setDirection(DcMotorEx.Direction.REVERSE);
+        servoLeft.setPosition(SERVO_DEFAULT);
+        servoRight.setPosition(SERVO_DEFAULT);
     }
 
-    public static void handleInput(float stick) {
-        viperSlideLeft.setPower(stick);
-        viperSlideRight.setPower(stick);
+    public static void handleInput(float left_stick_y, boolean left_bumper, boolean right_bumper) throws InterruptedException {
+        motorLeft.setPower(left_stick_y);
+        motorRight.setPower(left_stick_y);
+        if (left_bumper && servoLeft.getPosition() > SERVO_DEFAULT) {
+            servoLeft.setPosition(servoLeft.getPosition() - SERVO_CHANGE);
+            servoRight.setPosition(servoRight.getPosition() - SERVO_CHANGE);
+            Thread.sleep(500);
+        }
+        if (right_bumper && servoRight.getPosition() < SERVO_DEFAULT) {
+            servoLeft.setPosition(servoLeft.getPosition() + SERVO_CHANGE);
+            servoRight.setPosition(servoRight.getPosition() + SERVO_CHANGE);
+            Thread.sleep(500);
+        }
     }
 }
