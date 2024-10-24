@@ -20,7 +20,7 @@ public class Slide {
         motorLeft.setDirection(DcMotorEx.Direction.FORWARD);
         motorRight.setDirection(DcMotorEx.Direction.REVERSE);
         servoLeft.setPosition(SERVO_DEFAULT);
-        servoRight.setPosition(SERVO_DEFAULT);
+        servoRight.setPosition(-SERVO_DEFAULT);
     }
 
     public static void handleInput(float left_stick_y, boolean left_bumper, boolean right_bumper) throws InterruptedException {
@@ -28,12 +28,12 @@ public class Slide {
         motorRight.setPower(left_stick_y);
         if (left_bumper && servoLeft.getPosition() > SERVO_DEFAULT) {
             servoLeft.setPosition(servoLeft.getPosition() - SERVO_CHANGE);
-            servoRight.setPosition(servoRight.getPosition() - SERVO_CHANGE);
+            servoRight.setPosition(servoRight.getPosition() + SERVO_CHANGE);
             Thread.sleep(500);
         }
         if (right_bumper && servoRight.getPosition() < SERVO_DEFAULT) {
             servoLeft.setPosition(servoLeft.getPosition() + SERVO_CHANGE);
-            servoRight.setPosition(servoRight.getPosition() + SERVO_CHANGE);
+            servoRight.setPosition(servoRight.getPosition() - SERVO_CHANGE);
             Thread.sleep(500);
         }
     }
