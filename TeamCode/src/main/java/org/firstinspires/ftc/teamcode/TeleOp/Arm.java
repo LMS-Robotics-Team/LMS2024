@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class Slide {
+public class Arm {
     private static DcMotorEx motorLeft, motorRight;
     private static Servo servoLeft, servoRight;
     private static final double SERVO_DEFAULT = 0, SERVO_CHANGE = 0.5;
