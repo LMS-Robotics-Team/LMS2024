@@ -10,7 +10,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Arm {
     private static DcMotorEx motorLeft, motorRight;
     public static Servo servoLeft, servoRight;
-    private static final double SERVO_DEFAULT = 0.35, SERVO_CHANGE = 0.1;
+    private static final double SERVO_DEFAULT = 0.35, SERVO_CHANGE = 0.07;
 
     public static void init(@NonNull HardwareMap hardwareMap) {
         motorLeft = hardwareMap.get(DcMotorEx.class, "slideMotorLeft");
