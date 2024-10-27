@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Drive {
-    public static DcMotorEx motorFL, motorFR, motorBL, motorBR;
+    private static DcMotorEx motorFL, motorFR, motorBL, motorBR;
 
     public static void init(HardwareMap hardwareMap) {
         motorFL = hardwareMap.get(DcMotorEx.class, "driveMotorFL");
@@ -12,24 +12,20 @@ public class Drive {
         motorBL = hardwareMap.get(DcMotorEx.class, "driveMotorBL");
         motorBR = hardwareMap.get(DcMotorEx.class, "driveMotorBR");
 
-        SetMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
 
         motorFL.setDirection(DcMotorEx.Direction.REVERSE);
         motorBL.setDirection(DcMotorEx.Direction.REVERSE);
     }
 
-    public static void SetMode(DcMotorEx.RunMode mode) {
+    private static void setMode(DcMotorEx.RunMode mode) {
         motorFL.setMode(mode);
         motorFR.setMode(mode);
         motorBL.setMode(mode);
         motorBR.setMode(mode);
     }
 
-    public static boolean IsBusy() {
-        return motorFL.isBusy() || motorFR.isBusy() || motorBL.isBusy() || motorBR.isBusy();
-    }
-
-    public static int inches2Ticks(int inches) {
+    private static int inches2Ticks(int inches) {
         if (inches < 0) {
             throw new IllegalArgumentException("Inches cannot be negative");
         }
@@ -44,5 +40,30 @@ public class Drive {
         // return (int) Math.round(inches * 65.27343193133062);
 
         return (int) Math.round(inches * 65.273432);
+    }
+
+    public static void setDirection(DcMotorEx.Direction motorFLDirection, DcMotorEx.Direction motorFRDirection, DcMotorEx.Direction motorBLDirection, DcMotorEx.Direction motorBRDirection) {
+        motorFL.setDirection(motorFLDirection);
+        motorFR.setDirection(motorFRDirection);
+        motorBL.setDirection(motorBLDirection);
+        motorBR.setDirection(motorBRDirection);
+    }
+
+    public static void moveTo(int motorFLInches, int motorFRInches, int motorBLInches, int motorBRInches, double speed) {
+        motorFL.setTargetPosition(inches2Ticks(motorFLInches));
+        motorFR.setTargetPosition(inches2Ticks(motorFRInches));
+        motorBL.setTargetPosition(inches2Ticks(motorBLInches));
+        motorBR.setTargetPosition(inches2Ticks(motorBRInches));
+        motorFL.setPower(speed);
+        motorFR.setPower(speed);
+        motorBL.setPower(speed);
+        motorBR.setPower(speed);
+
+        setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+
+        // Intentional
+        while (motorFL.isBusy() || motorFR.isBusy() || motorBL.isBusy() || motorBR.isBusy());
+
+        setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
     }
 }

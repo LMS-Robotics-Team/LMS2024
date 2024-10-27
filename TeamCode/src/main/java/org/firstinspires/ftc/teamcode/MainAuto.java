@@ -2,39 +2,38 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Auto.Drive;
-import com.qualcomm.robotcore.hardware.DcMotor;
+import org.firstinspires.ftc.teamcode.Auto.Claw;
+import org.firstinspires.ftc.teamcode.Auto.Arm;
 
 @com.qualcomm.robotcore.eventloop.opmode.Autonomous
 public class MainAuto extends LinearOpMode {
     @Override
     public void runOpMode() {
         Drive.init(hardwareMap);
+        Claw.init(hardwareMap);
 
         waitForStart();
 
-        // Set Positions
-        Drive.motorFL.setTargetPosition(Drive.inches2Ticks(50));
-        Drive.motorFR.setTargetPosition(Drive.inches2Ticks(50));
-        Drive.motorBL.setTargetPosition(Drive.inches2Ticks(50));
-        Drive.motorBR.setTargetPosition(Drive.inches2Ticks(50));
-        Drive.motorFL.setPower(0.8);
-        Drive.motorFR.setPower(0.8);
-        Drive.motorBL.setPower(0.8);
-        Drive.motorBR.setPower(0.8);
+        Drive.moveTo(50, 50, 50, 50, 1);
 
-        // Start Moving
-        Drive.SetMode(DcMotor.RunMode.RUN_TO_POSITION);
+        sleep(1000);
 
-        // Wait Until Finished Moving
-        while (opModeIsActive() && Drive.IsBusy()) {
-            telemetry.addData("driveMotorFL", Drive.motorFL.getCurrentPosition());
-            telemetry.addData("driveMotorFR", Drive.motorFR.getCurrentPosition());
-            telemetry.addData("driveMotorBL", Drive.motorBL.getCurrentPosition());
-            telemetry.addData("driveMotorBR", Drive.motorBR.getCurrentPosition());
-            telemetry.update();
-        };
+        Claw.togglePosition();
 
-        // Stop Moving
-        Drive.SetMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        sleep(1000);
+
+        Claw.togglePosition();
+
+        sleep(1000);
+
+        Arm.setServoOffset(-0.15);
+
+        sleep(1000);
+
+        Arm.setServoOffset(0.2);
+
+        sleep(1000);
+
+        Arm.moveTo(50, 0.8);
     }
 }
