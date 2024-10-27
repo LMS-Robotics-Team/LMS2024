@@ -5,17 +5,17 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Drive {
-    private static DcMotorEx driveFL, driveFR, driveBL, driveBR;
+    private static DcMotorEx motorFL, motorFR, motorBL, motorBR;
     private static final double MIN_SPEED = 0.5, MAX_SPEED = 1;
 
     public static void init(HardwareMap hardwareMap) {
-        driveFL = hardwareMap.get(DcMotorEx.class, "driveMotorFL");
-        driveFR = hardwareMap.get(DcMotorEx.class, "driveMotorFR");
-        driveBL = hardwareMap.get(DcMotorEx.class, "driveMotorBL");
-        driveBR = hardwareMap.get(DcMotorEx.class, "driveMotorBR");
+        motorFL = hardwareMap.get(DcMotorEx.class, "driveMotorFL");
+        motorFR = hardwareMap.get(DcMotorEx.class, "driveMotorFR");
+        motorBL = hardwareMap.get(DcMotorEx.class, "driveMotorBL");
+        motorBR = hardwareMap.get(DcMotorEx.class, "driveMotorBR");
 
-        driveFL.setDirection(DcMotorEx.Direction.REVERSE);
-        driveBL.setDirection(DcMotorEx.Direction.REVERSE);
+        motorFL.setDirection(DcMotorEx.Direction.REVERSE);
+        motorBL.setDirection(DcMotorEx.Direction.REVERSE);
     }
 
     public static void handleInput(Gamepad gamepad1) {
@@ -29,9 +29,9 @@ public class Drive {
         double powerBL = scale * (forwardBackward - leftRight + rotate);
         double powerBR = scale * (forwardBackward + leftRight - rotate);
 
-        driveFL.setPower(powerFL);
-        driveFR.setPower(powerFR);
-        driveBL.setPower(powerBL);
-        driveBR.setPower(powerBR);
+        motorFL.setPower(powerFL);
+        motorFR.setPower(powerFR);
+        motorBL.setPower(powerBL);
+        motorBR.setPower(powerBR);
     }
 }
