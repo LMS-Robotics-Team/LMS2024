@@ -36,7 +36,7 @@ public class Drive {
         // Values:
         // return (int) Math.round((inches * 2.01570871261 * 384.5) / (Math.PI * 3.77953));
 
-        // Simplified Version:
+        // Simplified:
         // return (int) Math.round(inches * 65.27343193133062);
 
         return (int) Math.round(inches * 65.273432);
@@ -49,20 +49,21 @@ public class Drive {
         motorBR.setDirection(motorBRDirection);
     }
 
-    public static void moveTo(int motorFLInches, int motorFRInches, int motorBLInches, int motorBRInches, double speed) {
+    public static void moveTo(int motorFLInches, int motorFRInches, int motorBLInches, int motorBRInches, int velocity) {
         motorFL.setTargetPosition(inches2Ticks(motorFLInches));
         motorFR.setTargetPosition(inches2Ticks(motorFRInches));
         motorBL.setTargetPosition(inches2Ticks(motorBLInches));
         motorBR.setTargetPosition(inches2Ticks(motorBRInches));
-        motorFL.setPower(speed);
-        motorFR.setPower(speed);
-        motorBL.setPower(speed);
-        motorBR.setPower(speed);
+        motorFL.setVelocity(inches2Ticks(velocity));
+        motorFR.setVelocity(inches2Ticks(velocity));
+        motorBL.setVelocity(inches2Ticks(velocity));
+        motorBR.setVelocity(inches2Ticks(velocity));
 
         setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
 
-        // Intentional
-        while (motorFL.isBusy() || motorFR.isBusy() || motorBL.isBusy() || motorBR.isBusy());
+        while (motorFL.isBusy() || motorFR.isBusy() || motorBL.isBusy() || motorBR.isBusy()) {
+            Thread.yield();
+        };
 
         setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
     }
