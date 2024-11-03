@@ -11,10 +11,11 @@ public class MainAuto extends LinearOpMode {
     public void runOpMode() {
         Drive.init(hardwareMap);
         Claw.init(hardwareMap);
+        Arm.init(hardwareMap);
 
         waitForStart();
 
-        Drive.moveTo(50, 50, 50, 50, 1);
+        Drive.moveTo(5, 5, 5, 5, 1);
 
         sleep(1000);
 
@@ -34,6 +35,6 @@ public class MainAuto extends LinearOpMode {
 
         sleep(1000);
 
-        Arm.moveTo(50, 0.8);
+        Arm.moveTo(50, 500);
     }
 }

@@ -38,17 +38,17 @@ public class Arm {
         motorRight.setMode(mode);
     }
 
-    public static void moveTo(int ticks, double velocity) {
+    public static void moveTo(int ticks, double speed) {
         motorLeft.setTargetPosition(ticks);
         motorRight.setTargetPosition(ticks);
-        motorLeft.setVelocity(velocity);
-        motorRight.setVelocity(velocity);
+        motorLeft.setPower(speed);
+        motorRight.setPower(speed);
 
         setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
 
         while (motorLeft.isBusy() || motorRight.isBusy()) {
             Thread.yield();
-        };
+        }
 
         setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
     }

@@ -49,21 +49,21 @@ public class Drive {
         motorBR.setDirection(motorBRDirection);
     }
 
-    public static void moveTo(int motorFLInches, int motorFRInches, int motorBLInches, int motorBRInches, int velocity) {
+    public static void moveTo(int motorFLInches, int motorFRInches, int motorBLInches, int motorBRInches, double speed) {
         motorFL.setTargetPosition(inches2Ticks(motorFLInches));
         motorFR.setTargetPosition(inches2Ticks(motorFRInches));
         motorBL.setTargetPosition(inches2Ticks(motorBLInches));
         motorBR.setTargetPosition(inches2Ticks(motorBRInches));
-        motorFL.setVelocity(inches2Ticks(velocity));
-        motorFR.setVelocity(inches2Ticks(velocity));
-        motorBL.setVelocity(inches2Ticks(velocity));
-        motorBR.setVelocity(inches2Ticks(velocity));
+        motorFL.setPower(speed);
+        motorFR.setPower(speed);
+        motorBL.setPower(speed);
+        motorBR.setPower(speed);
 
         setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
 
         while (motorFL.isBusy() || motorFR.isBusy() || motorBL.isBusy() || motorBR.isBusy()) {
             Thread.yield();
-        };
+        }
 
         setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
     }
