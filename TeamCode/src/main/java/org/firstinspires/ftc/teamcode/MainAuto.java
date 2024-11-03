@@ -35,6 +35,6 @@ public class MainAuto extends LinearOpMode {
 
         sleep(1000);
 
-        Arm.moveTo(50, 500);
+        Arm.moveTo(50, 1);
     }
 }
