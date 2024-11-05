@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class Arm {
     private static DcMotorEx motorLeft, motorRight;
     private static Servo servoLeft, servoRight;
-    private static final double SERVO_MIN = 0.2, SERVO_DEFAULT = 0.35, SERVO_CHANGE = 0.001, SERVO_MAX = 0.4;
+    private static final double SERVO_MIN = 0.4, SERVO_DEFAULT = 0.55, SERVO_CHANGE = 0.001, SERVO_MAX = 0.7;
 
     public static void init(@NonNull HardwareMap hardwareMap) {
         motorLeft = hardwareMap.get(DcMotorEx.class, "slideMotorLeft");

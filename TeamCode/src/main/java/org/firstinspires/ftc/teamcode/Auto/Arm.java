@@ -47,7 +47,7 @@ public class Arm {
         setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
 
         while (motorLeft.isBusy() || motorRight.isBusy()) {
-            Thread.yield();
+            // Intentional
         }
 
         setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);

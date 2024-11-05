@@ -62,7 +62,7 @@ public class Drive {
         setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
 
         while (motorFL.isBusy() || motorFR.isBusy() || motorBL.isBusy() || motorBR.isBusy()) {
-            Thread.yield();
+            // Intentional
         }
 
         setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
