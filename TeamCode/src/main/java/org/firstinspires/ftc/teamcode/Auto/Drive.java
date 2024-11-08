@@ -30,14 +30,16 @@ public class Drive {
             throw new IllegalArgumentException("Inches cannot be negative");
         }
 
-        // Formula:
-        // (inches * Gear Ratio * Motor Ticks per Revolution) / (Pi * Wheel Circumference)
+        /*
+            Formula:
+            (inches * Gear Ratio * Motor Ticks per Revolution) / (Wheel Circumference)
 
-        // Values:
-        // return (int) Math.round((inches * 2.01570871261 * 384.5) / (Math.PI * 3.77953));
+            Values:
+            return (int) Math.round((inches * 2.01570871261 * 384.5) / (Math.PI * 3.77953));
 
-        // Simplified:
-        // return (int) Math.round(inches * 65.27343193133062);
+            Simplified:
+            return (int) Math.round(inches * 65.27343193133062);
+        */
 
         return (int) Math.round(inches * 65.273432);
     }

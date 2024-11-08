@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Drive {
     private static DcMotorEx motorFL, motorFR, motorBL, motorBR;
-    private static final double MIN_SPEED = 0.5, MAX_SPEED = 1;
+    private static final double SLOW_SPEED = 0.5, NORMAL_SPEED = 1;
 
     public static void init(HardwareMap hardwareMap) {
         motorFL = hardwareMap.get(DcMotorEx.class, "driveMotorFL");
@@ -23,7 +23,7 @@ public class Drive {
         double leftRight = gamepad1.right_stick_x;
         double rotate = gamepad1.right_trigger - gamepad1.left_trigger;
 
-        double scale = gamepad1.a ? MIN_SPEED : MAX_SPEED;
+        double scale = gamepad1.a ? SLOW_SPEED : NORMAL_SPEED;
         double powerFL = scale * (forwardBackward + leftRight + rotate);
         double powerFR = scale * (forwardBackward - leftRight - rotate);
         double powerBL = scale * (forwardBackward - leftRight + rotate);

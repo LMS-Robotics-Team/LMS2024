@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class Arm {
     private static DcMotorEx motorLeft, motorRight;
     private static Servo servoLeft, servoRight;
-    private static final double SERVO_MIN = 0.4, SERVO_DEFAULT = 0.55, SERVO_MAX = 0.7;
+    private static final double SERVO_MIN = 0.45, SERVO_DEFAULT = 0.55, SERVO_MAX = 0.75;
 
     public static void init(@NonNull HardwareMap hardwareMap) {
         motorLeft = hardwareMap.get(DcMotorEx.class, "armMotorLeft");

@@ -35,13 +35,13 @@ public class DebugAuto extends LinearOpMode {
 
         telemetry.addLine("Started Arm Set Servo Offset Backwards");
         telemetry.update();
-        Arm.setServoOffset(-0.15);
+        Arm.setServoOffset(-0.1);
 
         sleep(3000);
 
         telemetry.addLine("Started Arm Set Servo Offset Forwards");
         telemetry.update();
-        Arm.setServoOffset(0.15);
+        Arm.setServoOffset(0.2);
 
         sleep(3000);
 
