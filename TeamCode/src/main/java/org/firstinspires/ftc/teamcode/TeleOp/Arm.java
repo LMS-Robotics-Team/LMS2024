@@ -11,7 +11,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Arm {
     private static DcMotorEx motorLeft, motorRight;
     private static Servo servoLeft, servoRight;
-    private static final double SERVO_MIN = 0.4, SERVO_DEFAULT = 0.55, SERVO_CHANGE = 0.0001, SERVO_MAX = 0.7;
+    private static final double SERVO_MIN = 0.4, SERVO_DEFAULT = 0.55, SERVO_CHANGE = 0.0005, SERVO_MAX = 0.75;
+    private static double servoOffset = 0;
 
     public static void init(@NonNull HardwareMap hardwareMap) {
         motorLeft = hardwareMap.get(DcMotorEx.class, "armMotorLeft");
@@ -29,16 +30,17 @@ public class Arm {
         motorLeft.setPower(left_stick_y);
         motorRight.setPower(left_stick_y);
 
-        if (left_bumper && servoLeft.getPosition() > SERVO_MIN) {
-            servoLeft.setPosition(servoLeft.getPosition() - SERVO_CHANGE);
-            servoRight.setPosition(servoRight.getPosition() + SERVO_CHANGE);
+        if (left_bumper && SERVO_DEFAULT + servoOffset > SERVO_MIN) {
+            servoOffset -= SERVO_CHANGE;
         }
-        if (right_bumper && servoLeft.getPosition() < SERVO_MAX) {
-            servoLeft.setPosition(servoLeft.getPosition() + SERVO_CHANGE);
-            servoRight.setPosition(servoRight.getPosition() - SERVO_CHANGE);
+        if (right_bumper && SERVO_DEFAULT + servoOffset < SERVO_MAX) {
+            servoOffset += SERVO_CHANGE;
         }
 
-        telemetry.addData("ServoLeft Position", servoLeft.getPosition());
+        servoLeft.setPosition(SERVO_DEFAULT + servoOffset);
+        servoRight.setPosition(SERVO_DEFAULT - servoOffset);
+
+        telemetry.addData("ServoLeft Position", SERVO_DEFAULT + servoOffset);
         telemetry.update();
     }
 }
