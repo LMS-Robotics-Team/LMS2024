@@ -6,10 +6,12 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 public class Arm {
     private static DcMotorEx motorLeft, motorRight;
     private static Servo servoLeft, servoRight;
-    private static final double SERVO_MIN = 0.45, SERVO_DEFAULT = 0.55, SERVO_CHANGE = 0.0005, SERVO_MAX = 0.75;
+    private static final double SERVO_MIN = 0.4, SERVO_DEFAULT = 0.5, SERVO_CHANGE = 0.0005, SERVO_MAX = 0.6;
     private static double servoOffset = 0;
 
     public static void init(@NonNull HardwareMap hardwareMap) {
@@ -24,7 +26,7 @@ public class Arm {
         servoRight.setPosition(SERVO_DEFAULT);
     }
 
-    public static void handleInput(float left_stick_y, boolean left_bumper, boolean right_bumper) {
+    public static void handleInput(float left_stick_y, boolean left_bumper, boolean right_bumper, Telemetry telemetry) {
         motorLeft.setPower(left_stick_y);
         motorRight.setPower(left_stick_y);
 
@@ -37,5 +39,8 @@ public class Arm {
 
         servoLeft.setPosition(SERVO_DEFAULT + servoOffset);
         servoRight.setPosition(SERVO_DEFAULT - servoOffset);
+
+        telemetry.addData("Servo Left Position", SERVO_DEFAULT + servoOffset);
+        telemetry.update();
     }
 }
