@@ -21,15 +21,25 @@ public class DebugAuto extends LinearOpMode {
 
         sleep(3000);
 
-        telemetry.addLine("Started Claw Toggle Position");
+        telemetry.addLine("Started Claw Toggle Top Position");
         telemetry.update();
-        Claw.togglePosition();
+        Claw.toggleTopPosition();
 
         sleep(3000);
 
-        telemetry.addLine("Started Claw Toggle Position");
+        telemetry.addLine("Started Claw Toggle Top Position");
         telemetry.update();
-        Claw.togglePosition();
+        Claw.toggleTopPosition();
+
+        telemetry.addLine("Started Claw Set Bottom Position");
+        telemetry.update();
+        Claw.setBottomOffset(0.2);
+
+        sleep(3000);
+
+        telemetry.addLine("Started Claw Set Bottom Position");
+        telemetry.update();
+        Claw.setBottomOffset(0);
 
         sleep(3000);
 
