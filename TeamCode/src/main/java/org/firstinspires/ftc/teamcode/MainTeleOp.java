@@ -18,7 +18,7 @@ public class MainTeleOp extends LinearOpMode {
 
         while (opModeIsActive()) {
             Arm.handleInput(gamepad2.left_stick_y, gamepad2.left_bumper, gamepad2.right_bumper);
-            Claw.handleInput(gamepad2.a, gamepad2.right_stick_button, gamepad2.right_stick_y);
+            Claw.handleInput(gamepad2.a, gamepad2.dpad_up, gamepad2.dpad_down);
             Drive.handleInput(gamepad1);
         }
     }

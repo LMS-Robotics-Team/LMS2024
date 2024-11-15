@@ -24,24 +24,24 @@ public class Drive {
         motorBL.setMode(mode);
         motorBR.setMode(mode);
     }
-
-    private static int inches2Ticks(int inches) {
-        if (inches < 0) {
-            throw new IllegalArgumentException("Inches cannot be negative");
+    
+    private static int mm2Ticks(int mm) {
+        if (mm < 0) {
+            throw new IllegalArgumentException("MM cannot be negative");
         }
 
         /*
             Formula:
-            (inches * Gear Ratio * Motor Ticks per Revolution) / (Wheel Circumference)
+            (mm * Gear Ratio * Motor Ticks per Revolution) / (Wheel Circumference in mm)
 
             Values:
-            return (int) Math.round((inches * 2.01570871261 * 384.5) / (Math.PI * 3.77953));
+            return (int) Math.round((mm * 2 * 384.5) / (Math.PI * 96));
 
             Simplified:
-            return (int) Math.round(inches * 65.27343193133062);
+            return (int) Math.round(mm * 2.54979481745);
         */
 
-        return (int) Math.round(inches * 65.273432);
+        return (int) Math.round(mm * 2.549795);
     }
 
     public static void setDirection(DcMotorEx.Direction motorFLDirection, DcMotorEx.Direction motorFRDirection, DcMotorEx.Direction motorBLDirection, DcMotorEx.Direction motorBRDirection) {
@@ -51,11 +51,11 @@ public class Drive {
         motorBR.setDirection(motorBRDirection);
     }
 
-    public static void moveTo(int motorFLInches, int motorFRInches, int motorBLInches, int motorBRInches, double speed) {
-        motorFL.setTargetPosition(inches2Ticks(motorFLInches));
-        motorFR.setTargetPosition(inches2Ticks(motorFRInches));
-        motorBL.setTargetPosition(inches2Ticks(motorBLInches));
-        motorBR.setTargetPosition(inches2Ticks(motorBRInches));
+    public static void moveTo(int motorFLMM, int motorFRMM, int motorBLMM, int motorBRMM, double speed) {
+        motorFL.setTargetPosition(mm2Ticks(motorFLMM));
+        motorFR.setTargetPosition(mm2Ticks(motorFRMM));
+        motorBL.setTargetPosition(mm2Ticks(motorBLMM));
+        motorBR.setTargetPosition(mm2Ticks(motorBRMM));
         motorFL.setPower(speed);
         motorFR.setPower(speed);
         motorBL.setPower(speed);
