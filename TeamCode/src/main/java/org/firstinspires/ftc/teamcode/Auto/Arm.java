@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Auto;
 
 import androidx.annotation.NonNull;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -19,8 +18,8 @@ public class Arm {
         servoRight = hardwareMap.get(Servo.class, "armServoRight");
 
         motorLeft.setDirection(DcMotorEx.Direction.REVERSE);
-        motorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        motorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorLeft.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        motorRight.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
 
         servoLeft.setPosition(SERVO_DEFAULT);
