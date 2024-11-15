@@ -19,7 +19,7 @@ public class Claw {
 
     public static void setBottomOffset(double offset) {
         double newPosition = SERVOBOTTOM_DEFAULT + offset;
-        if (SERVOBOTTOM_MIN < newPosition && newPosition < SERVOBOTTOM_MAX) {
+        if (SERVOBOTTOM_MIN <= newPosition && newPosition <= SERVOBOTTOM_MAX) {
             servoBottom.setPosition(newPosition);
         }
     }
