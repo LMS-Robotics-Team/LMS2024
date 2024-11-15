@@ -24,11 +24,11 @@ public class Claw {
             else servoTop.setPosition(SERVOTOP_MIN);
             Thread.sleep(500);
         }
-        if (dpad_up && SERVOBOTTOM_MIN + servoOffset < SERVOBOTTOM_MIN) {
-            servoOffset += SERVOBOTTOM_CHANGE;
-        }
-        if (dpad_down && SERVOBOTTOM_MIN + servoOffset > SERVOBOTTOM_MAX) {
+        if (dpad_up && SERVOBOTTOM_MIN + servoOffset > SERVOBOTTOM_MIN) {
             servoOffset -= SERVOBOTTOM_CHANGE;
+        }
+        if (dpad_down && SERVOBOTTOM_MIN + servoOffset < SERVOBOTTOM_MAX) {
+            servoOffset += SERVOBOTTOM_CHANGE;
         }
         servoBottom.setPosition(SERVOBOTTOM_MIN + servoOffset);
     }

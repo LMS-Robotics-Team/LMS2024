@@ -17,7 +17,7 @@ public class DebugAuto extends LinearOpMode {
 
         telemetry.addLine("Started Drive Move To");
         telemetry.update();
-        Drive.moveTo(60, 60, 60, 60, 1);
+        Drive.moveTo(762, 762, 762, 762, 0.5);
 
         sleep(3000);
 
@@ -30,6 +30,12 @@ public class DebugAuto extends LinearOpMode {
         telemetry.addLine("Started Claw Toggle Top Position");
         telemetry.update();
         Claw.toggleTopPosition();
+
+        telemetry.addLine("Started Claw Set Bottom Position");
+        telemetry.update();
+        Claw.setBottomOffset(0.5);
+
+        sleep(3000);
 
         telemetry.addLine("Started Claw Set Bottom Position");
         telemetry.update();
@@ -39,7 +45,7 @@ public class DebugAuto extends LinearOpMode {
 
         telemetry.addLine("Started Claw Set Bottom Position");
         telemetry.update();
-        Claw.setBottomOffset(0.5);
+        Claw.setBottomOffset(0);
 
         sleep(3000);
 
@@ -51,12 +57,12 @@ public class DebugAuto extends LinearOpMode {
 
         telemetry.addLine("Started Arm Set Servo Offset Forwards");
         telemetry.update();
-        Arm.setServoOffset(0.2);
+        Arm.setServoOffset(0.1);
 
         sleep(3000);
 
         telemetry.addLine("Started Arm Move To");
         telemetry.update();
-        Arm.moveTo(200, 1);
+        Arm.moveTo(5000, 0.5);
     }
 }
