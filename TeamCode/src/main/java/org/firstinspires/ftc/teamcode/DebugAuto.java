@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
 import org.firstinspires.ftc.teamcode.Auto.Drive;
 import org.firstinspires.ftc.teamcode.Auto.Claw;
 import org.firstinspires.ftc.teamcode.Auto.Arm;
@@ -17,6 +19,42 @@ public class DebugAuto extends LinearOpMode {
 
         telemetry.addLine("Started Drive Move To");
         telemetry.update();
+        Drive.setDirection(DcMotorSimple.Direction.REVERSE, DcMotorSimple.Direction.FORWARD, DcMotorSimple.Direction.REVERSE, DcMotorSimple.Direction.FORWARD);
+        Drive.moveTo(762, 762, 762, 762, 0.5);
+
+        sleep(3000);
+
+        telemetry.addLine("Started Drive Move To");
+        telemetry.update();
+        Drive.setDirection(DcMotorSimple.Direction.FORWARD, DcMotorSimple.Direction.REVERSE, DcMotorSimple.Direction.FORWARD, DcMotorSimple.Direction.REVERSE);
+        Drive.moveTo(762, 762, 762, 762, 0.5);
+
+        sleep(3000);
+
+        telemetry.addLine("Started Drive Move To");
+        telemetry.update();
+        Drive.setDirection(DcMotorSimple.Direction.REVERSE, DcMotorSimple.Direction.REVERSE, DcMotorSimple.Direction.FORWARD, DcMotorSimple.Direction.FORWARD);
+        Drive.moveTo(762, 762, 762, 762, 0.5);
+
+        sleep(3000);
+
+        telemetry.addLine("Started Drive Move To");
+        telemetry.update();
+        Drive.setDirection(DcMotorSimple.Direction.FORWARD, DcMotorSimple.Direction.FORWARD, DcMotorSimple.Direction.REVERSE, DcMotorSimple.Direction.REVERSE);
+        Drive.moveTo(762, 762, 762, 762, 0.5);
+
+        sleep(3000);
+
+        telemetry.addLine("Started Drive Move To");
+        telemetry.update();
+        Drive.setDirection(DcMotorSimple.Direction.FORWARD, DcMotorSimple.Direction.FORWARD, DcMotorSimple.Direction.FORWARD, DcMotorSimple.Direction.FORWARD);
+        Drive.moveTo(762, 762, 762, 762, 0.5);
+
+        sleep(3000);
+
+        telemetry.addLine("Started Drive Move To");
+        telemetry.update();
+        Drive.setDirection(DcMotorSimple.Direction.REVERSE, DcMotorSimple.Direction.REVERSE, DcMotorSimple.Direction.REVERSE, DcMotorSimple.Direction.REVERSE);
         Drive.moveTo(762, 762, 762, 762, 0.5);
 
         sleep(3000);
@@ -58,11 +96,5 @@ public class DebugAuto extends LinearOpMode {
         telemetry.addLine("Started Arm Set Servo Offset Forwards");
         telemetry.update();
         Arm.setServoOffset(0.1);
-
-        sleep(3000);
-
-        telemetry.addLine("Started Arm Move To");
-        telemetry.update();
-        Arm.moveTo(5000, 0.5);
     }
 }

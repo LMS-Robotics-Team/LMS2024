@@ -8,13 +8,13 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class Claw {
     private static Servo servoBottom, servoTop;
     private static final double SERVOBOTTOM_MIN = 0, SERVOBOTTOM_MAX = 1, SERVOBOTTOM_CHANGE = 0.0005, SERVOTOP_MIN = 0, SERVOTOP_MAX = 0.15;
-    private static double servoOffset = 0;
+    private static double servoOffset = 0.5;
 
     public static void init(@NonNull HardwareMap hardwareMap) {
         servoBottom = hardwareMap.get(Servo.class, "clawServoBottom");
         servoTop = hardwareMap.get(Servo.class, "clawServoTop");
 
-        servoBottom.setPosition(SERVOBOTTOM_MIN);
+        servoBottom.setPosition(servoOffset);
         servoTop.setPosition(SERVOTOP_MIN);
     }
 

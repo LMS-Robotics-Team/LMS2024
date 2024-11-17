@@ -12,14 +12,13 @@ public class Drive {
         motorBL = hardwareMap.get(DcMotorEx.class, "driveMotorBL");
         motorBR = hardwareMap.get(DcMotorEx.class, "driveMotorBR");
 
-        setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-
         motorFL.setDirection(DcMotorEx.Direction.REVERSE);
         motorBL.setDirection(DcMotorEx.Direction.REVERSE);
         motorFL.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         motorFR.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         motorBL.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         motorBR.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     private static void setMode(DcMotorEx.RunMode mode) {
