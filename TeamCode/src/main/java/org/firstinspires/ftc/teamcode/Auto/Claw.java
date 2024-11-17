@@ -17,15 +17,17 @@ public class Claw {
         servoTop.setPosition(SERVOTOP_MIN);
     }
 
-    public static void setBottomOffset(double offset) {
+    public static void setBottomOffset(double offset) throws InterruptedException {
         double newPosition = SERVOBOTTOM_DEFAULT + offset;
         if (SERVOBOTTOM_MIN <= newPosition && newPosition <= SERVOBOTTOM_MAX) {
             servoBottom.setPosition(newPosition);
+            Thread.sleep(1000);
         }
     }
 
-    public static void toggleTopPosition() {
+    public static void toggleTopPosition() throws InterruptedException {
         if (servoTop.getPosition() == SERVOTOP_MIN) servoTop.setPosition(SERVOTOP_MAX);
         else servoTop.setPosition(SERVOTOP_MIN);
+        Thread.sleep(500);
     }
 }
