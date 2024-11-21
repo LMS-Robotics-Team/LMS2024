@@ -10,9 +10,9 @@ public class Arm {
     private static DcMotorEx motorLeft, motorRight;
     private static Servo servoLeft, servoRight;
     private static final double SERVO_MIN = 0.4,
-            SERVO_DRIVE_THRESHOLD_MIN = 0.497777,
+            SERVO_DRIVE_THRESHOLD_MIN = 0.46,
             SERVO_DEFAULT = 0.5,
-            SERVO_DRIVE_THRESHOLD_MAX = 0.502222,
+            SERVO_DRIVE_THRESHOLD_MAX = 0.52,
             SERVO_MAX = 0.6,
             SERVO_CHANGE = 0.0005;
     private static double servoOffset = 0;
