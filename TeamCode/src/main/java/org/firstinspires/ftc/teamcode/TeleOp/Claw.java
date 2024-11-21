@@ -15,8 +15,8 @@ public class Claw {
         servoBottomRight = hardwareMap.get(Servo.class, "clawServoBottomRight");
         servoTop = hardwareMap.get(Servo.class, "clawServoTop");
 
-        servoBottomLeft.setPosition(SERVO_BOTTOM_DEFAULT);
-        servoBottomRight.setPosition(SERVO_BOTTOM_DEFAULT);
+        servoBottomLeft.setPosition(SERVO_BOTTOM_DEFAULT + 0.5);
+        servoBottomRight.setPosition(SERVO_BOTTOM_DEFAULT - 0.5);
         servoTop.setPosition(SERVO_TOP_MIN);
     }
 
@@ -26,11 +26,11 @@ public class Claw {
             else servoTop.setPosition(SERVO_TOP_MIN);
             Thread.sleep(500);
         }
-        if (dpad_up && SERVO_BOTTOM_DEFAULT + servoOffset > SERVO_BOTTOM_MIN) {
-            servoOffset -= SERVO_BOTTOM_CHANGE;
-        }
-        if (dpad_down && SERVO_BOTTOM_DEFAULT + servoOffset < SERVO_BOTTOM_MAX) {
+        if (dpad_up && SERVO_BOTTOM_DEFAULT + servoOffset < SERVO_BOTTOM_MAX) {
             servoOffset += SERVO_BOTTOM_CHANGE;
+        }
+        if (dpad_down && SERVO_BOTTOM_DEFAULT + servoOffset > SERVO_BOTTOM_MIN) {
+            servoOffset -= SERVO_BOTTOM_CHANGE;
         }
         servoBottomLeft.setPosition(SERVO_BOTTOM_DEFAULT + servoOffset);
         servoBottomRight.setPosition(SERVO_BOTTOM_DEFAULT - servoOffset);
