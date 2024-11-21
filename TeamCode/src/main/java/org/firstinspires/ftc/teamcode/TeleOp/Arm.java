@@ -9,10 +9,15 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class Arm {
     private static DcMotorEx motorLeft, motorRight;
     private static Servo servoLeft, servoRight;
-    private static final double SERVO_MIN = 0.4, SERVO_DEFAULT = 0.5, SERVO_CHANGE = 0.0005, SERVO_MAX = 0.6;
+    private static final double SERVO_MIN = 0.4,
+            SERVO_DRIVE_THRESHOLD_MIN = 0.497777,
+            SERVO_DEFAULT = 0.5,
+            SERVO_DRIVE_THRESHOLD_MAX = 0.502222,
+            SERVO_MAX = 0.6,
+            SERVO_CHANGE = 0.0005;
     private static double servoOffset = 0;
 
-    public static void init(@NonNull HardwareMap hardwareMap) {
+    public Arm(@NonNull HardwareMap hardwareMap) {
         motorLeft = hardwareMap.get(DcMotorEx.class, "armMotorLeft");
         motorRight = hardwareMap.get(DcMotorEx.class, "armMotorRight");
         servoLeft = hardwareMap.get(Servo.class, "armServoLeft");
@@ -27,8 +32,11 @@ public class Arm {
     }
 
     public static void handleInput(float left_stick_y, boolean left_bumper, boolean right_bumper) {
-        motorLeft.setPower(left_stick_y);
-        motorRight.setPower(left_stick_y);
+        if (SERVO_DEFAULT + servoOffset > SERVO_DRIVE_THRESHOLD_MIN
+                && SERVO_DEFAULT + servoOffset < SERVO_DRIVE_THRESHOLD_MAX) {
+            motorLeft.setPower(left_stick_y);
+            motorRight.setPower(left_stick_y);
+        }
 
         if (left_bumper && SERVO_DEFAULT + servoOffset > SERVO_MIN) {
             servoOffset -= SERVO_CHANGE;

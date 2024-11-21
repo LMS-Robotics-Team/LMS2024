@@ -7,29 +7,29 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Claw {
     private static Servo servoBottom, servoTop;
-    private static final double SERVOBOTTOM_MIN = 0, SERVOBOTTOM_MAX = 1, SERVOBOTTOM_CHANGE = 0.005, SERVOTOP_MIN = 0, SERVOTOP_MAX = 0.15;
+    private static final double SERVO_BOTTOM_MIN = 0, SERVO_BOTTOM_MAX = 1, SERVO_BOTTOM_CHANGE = 0.005, SERVO_TOP_MIN = 0, SERVO_TOP_MAX = 0.15;
     private static double servoOffset = 0;
 
-    public static void init(@NonNull HardwareMap hardwareMap) {
+    public Claw(@NonNull HardwareMap hardwareMap) {
         servoBottom = hardwareMap.get(Servo.class, "clawServoBottom");
         servoTop = hardwareMap.get(Servo.class, "clawServoTop");
 
-        servoBottom.setPosition(SERVOBOTTOM_MIN + servoOffset);
-        servoTop.setPosition(SERVOTOP_MIN);
+        servoBottom.setPosition(SERVO_BOTTOM_MIN + servoOffset);
+        servoTop.setPosition(SERVO_TOP_MIN);
     }
 
     public static void handleInput(boolean a, boolean dpad_up, boolean dpad_down) throws InterruptedException {
         if (a) {
-            if (servoTop.getPosition() == SERVOTOP_MIN) servoTop.setPosition(SERVOTOP_MAX);
-            else servoTop.setPosition(SERVOTOP_MIN);
+            if (servoTop.getPosition() == SERVO_TOP_MIN) servoTop.setPosition(SERVO_TOP_MAX);
+            else servoTop.setPosition(SERVO_TOP_MIN);
             Thread.sleep(500);
         }
-        if (dpad_up && SERVOBOTTOM_MIN + servoOffset > SERVOBOTTOM_MIN) {
-            servoOffset -= SERVOBOTTOM_CHANGE;
+        if (dpad_up && SERVO_BOTTOM_MIN + servoOffset > SERVO_BOTTOM_MIN) {
+            servoOffset -= SERVO_BOTTOM_CHANGE;
         }
-        if (dpad_down && SERVOBOTTOM_MIN + servoOffset < SERVOBOTTOM_MAX) {
-            servoOffset += SERVOBOTTOM_CHANGE;
+        if (dpad_down && SERVO_BOTTOM_MIN + servoOffset < SERVO_BOTTOM_MAX) {
+            servoOffset += SERVO_BOTTOM_CHANGE;
         }
-        servoBottom.setPosition(SERVOBOTTOM_MIN + servoOffset);
+        servoBottom.setPosition(SERVO_BOTTOM_MIN + servoOffset);
     }
 }

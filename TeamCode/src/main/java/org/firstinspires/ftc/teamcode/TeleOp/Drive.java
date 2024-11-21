@@ -8,7 +8,7 @@ public class Drive {
     private static DcMotorEx motorFL, motorFR, motorBL, motorBR;
     private static final double SLOW_SPEED = 0.5, NORMAL_SPEED = 1;
 
-    public static void init(HardwareMap hardwareMap) {
+    public Drive(HardwareMap hardwareMap) {
         motorFL = hardwareMap.get(DcMotorEx.class, "driveMotorFL");
         motorFR = hardwareMap.get(DcMotorEx.class, "driveMotorFR");
         motorBL = hardwareMap.get(DcMotorEx.class, "driveMotorBL");

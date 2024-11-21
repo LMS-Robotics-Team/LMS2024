@@ -10,9 +10,9 @@ import org.firstinspires.ftc.teamcode.TeleOp.Drive;
 public class MainTeleOp extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-        Arm.init(hardwareMap);
-        Claw.init(hardwareMap);
-        Drive.init(hardwareMap);
+        new Arm(hardwareMap);
+        new Claw(hardwareMap);
+        new Drive(hardwareMap);
 
         waitForStart();
 

@@ -11,9 +11,9 @@ import org.firstinspires.ftc.teamcode.Auto.Arm;
 public class MainAuto extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-        Drive.init(hardwareMap);
-        Claw.init(hardwareMap);
-        Arm.init(hardwareMap);
+        new Drive(hardwareMap);
+        new Claw(hardwareMap);
+        new Arm(hardwareMap);
 
         waitForStart();
 

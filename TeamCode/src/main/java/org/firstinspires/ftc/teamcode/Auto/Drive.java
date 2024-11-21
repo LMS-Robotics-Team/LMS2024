@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class Drive {
     private static DcMotorEx motorFL, motorFR, motorBL, motorBR;
 
-    public static void init(HardwareMap hardwareMap) {
+    public Drive(HardwareMap hardwareMap) {
         motorFL = hardwareMap.get(DcMotorEx.class, "driveMotorFL");
         motorFR = hardwareMap.get(DcMotorEx.class, "driveMotorFR");
         motorBL = hardwareMap.get(DcMotorEx.class, "driveMotorBL");

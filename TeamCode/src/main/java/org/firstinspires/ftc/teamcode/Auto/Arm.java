@@ -9,7 +9,7 @@ public class Arm {
     private static Servo servoLeft, servoRight;
     private static final double SERVO_MIN = 0.4, SERVO_DEFAULT = 0.5, SERVO_MAX = 0.6;
 
-    public static void init(@NonNull HardwareMap hardwareMap) {
+    public Arm(@NonNull HardwareMap hardwareMap) {
         servoLeft = hardwareMap.get(Servo.class, "armServoLeft");
         servoRight = hardwareMap.get(Servo.class, "armServoRight");
 
