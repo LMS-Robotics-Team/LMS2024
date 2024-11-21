@@ -16,21 +16,19 @@ public class Claw {
 
         servoBottomLeft.setPosition(SERVO_BOTTOM_DEFAULT);
         servoBottomRight.setPosition(SERVO_BOTTOM_DEFAULT);
-        servoTop.setPosition(SERVO_TOP_MIN);
+        servoTop.setPosition(SERVO_TOP_MAX);
     }
 
-    public static void setBottomOffset(double offset) throws InterruptedException {
+    public static void setBottomOffset(double offset) {
         double newPosition = SERVO_BOTTOM_DEFAULT + offset;
         if (SERVO_BOTTOM_MIN <= newPosition && newPosition <= SERVO_BOTTOM_MAX) {
             servoBottomLeft.setPosition(newPosition);
             servoBottomRight.setPosition(SERVO_BOTTOM_DEFAULT - offset);
-            Thread.sleep(3000);
         }
     }
 
-    public static void toggleTopPosition() throws InterruptedException {
+    public static void toggleTopPosition() {
         if (servoTop.getPosition() == SERVO_TOP_MIN) servoTop.setPosition(SERVO_TOP_MAX);
         else servoTop.setPosition(SERVO_TOP_MIN);
-        Thread.sleep(500);
     }
 }

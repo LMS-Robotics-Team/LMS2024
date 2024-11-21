@@ -38,11 +38,13 @@ public class Arm {
             motorRight.setPower(left_stick_y);
         }
 
-        if (left_bumper && SERVO_DEFAULT + servoOffset > SERVO_MIN) {
-            servoOffset -= SERVO_CHANGE;
-        }
-        if (right_bumper && SERVO_DEFAULT + servoOffset < SERVO_MAX) {
-            servoOffset += SERVO_CHANGE;
+        if (left_stick_y == 0) {
+            if (left_bumper && SERVO_DEFAULT + servoOffset > SERVO_MIN) {
+                servoOffset -= SERVO_CHANGE;
+            }
+            if (right_bumper && SERVO_DEFAULT + servoOffset < SERVO_MAX) {
+                servoOffset += SERVO_CHANGE;
+            }
         }
 
         servoLeft.setPosition(SERVO_DEFAULT + servoOffset);

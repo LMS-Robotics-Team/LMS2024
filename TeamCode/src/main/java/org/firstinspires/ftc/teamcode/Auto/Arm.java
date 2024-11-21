@@ -17,12 +17,11 @@ public class Arm {
         servoRight.setPosition(SERVO_DEFAULT);
     }
 
-    public static void setServoOffset(double offset) throws InterruptedException {
+    public static void setServoOffset(double offset) {
         double newPosition = SERVO_DEFAULT + offset;
         if (SERVO_MIN <= newPosition && newPosition <= SERVO_MAX) {
             servoLeft.setPosition(newPosition);
             servoRight.setPosition(SERVO_DEFAULT - offset);
-            Thread.sleep(3000);
         }
     }
 }

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Auto;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -55,6 +56,10 @@ public class Drive {
     }
 
     public static void moveTo(int motorFLMM, int motorFRMM, int motorBLMM, int motorBRMM, double speed) {
+        if (speed < 0) {
+            throw new IllegalArgumentException("Speed cannot be negative");
+        }
+
         motorFL.setTargetPosition(mm2Ticks(motorFLMM));
         motorFR.setTargetPosition(mm2Ticks(motorFRMM));
         motorBL.setTargetPosition(mm2Ticks(motorBLMM));
