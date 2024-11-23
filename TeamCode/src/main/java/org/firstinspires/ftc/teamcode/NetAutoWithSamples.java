@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.Auto.Claw;
 import org.firstinspires.ftc.teamcode.Auto.Arm;
 
 @com.qualcomm.robotcore.eventloop.opmode.Autonomous
-public class ObservationAuto extends LinearOpMode {
+public class NetAutoWithSamples extends LinearOpMode {
     @Override
     public void runOpMode() {
         new Drive(hardwareMap);
@@ -20,8 +20,8 @@ public class ObservationAuto extends LinearOpMode {
         Claw.setBottomOffset(0);
         sleep(500);
 
-        // Tokyo Drift AKA pivot robot along BR wheel to align with submersible
-        Drive.moveTo(-1150, 1150, 0, 1150, 0.5);
+        // Tokyo Drift AKA pivot robot along BR wheel to align with submersible in one move
+        Drive.moveTo(1150, -1150, -1150, 0, 0.5);
 
         // Add specimen to bar
         Drive.moveTo(400, 400, 400, 400, 0.5);
@@ -36,23 +36,23 @@ public class ObservationAuto extends LinearOpMode {
         Drive.moveTo(-200, -200, -200, -200, 1);
 
         // Turn left to get three samples
-        Drive.moveTo(520, -520, 520, -520, 1);
+        Drive.moveTo(-520, 520, -520, 520, 1);
 
         // Move to gap
         Drive.moveTo(1100, 1100, 1100, 1100, 1);
 
         // Strafe right to align in parallel with three samples
-        Drive.moveTo(-1000, 1000, 1000, -1000, 1);
+        Drive.moveTo(1000, -1000, -1000, 1000, 1);
 
         for (int i = 0; i <= 2; i++) {
             // Align to push first sample
             Drive.moveTo(200, 200, 200, 200, 1);
 
-            // Strafe right to score sample
-            Drive.moveTo(1400, -1400, -1400, 1400, 1);
-
-            // Strafe left to return
+            // Strafe left to score sample
             Drive.moveTo(-1400, 1400, 1400, -1400, 1);
+
+            // Strafe right to return
+            Drive.moveTo(1400, -1400, -1400, 1400, 1);
         }
     }
 }
