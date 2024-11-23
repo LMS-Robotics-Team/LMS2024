@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.Auto;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -30,10 +29,6 @@ public class Drive {
     }
     
     private static int mm2Ticks(int mm) {
-        if (mm < 0) {
-            throw new IllegalArgumentException("MM cannot be negative");
-        }
-
         /*
             Formula:
             (mm * Gear Ratio * Motor Ticks per Revolution) / (Wheel Circumference in mm)
@@ -46,13 +41,6 @@ public class Drive {
         */
 
         return (int) Math.round(mm * 2.549795);
-    }
-
-    public static void setDirection(DcMotorEx.Direction motorFLDirection, DcMotorEx.Direction motorFRDirection, DcMotorEx.Direction motorBLDirection, DcMotorEx.Direction motorBRDirection) {
-        motorFL.setDirection(motorFLDirection);
-        motorFR.setDirection(motorFRDirection);
-        motorBL.setDirection(motorBLDirection);
-        motorBR.setDirection(motorBRDirection);
     }
 
     public static void moveTo(int motorFLMM, int motorFRMM, int motorBLMM, int motorBRMM, double speed) {

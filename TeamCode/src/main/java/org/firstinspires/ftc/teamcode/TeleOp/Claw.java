@@ -20,11 +20,14 @@ public class Claw {
         servoTop.setPosition(SERVO_TOP_MIN);
     }
 
-    public static void handleInput(boolean a, boolean dpad_up, boolean dpad_down) throws InterruptedException {
+    public static void handleInput(boolean a, boolean x, boolean dpad_up, boolean dpad_down) throws InterruptedException {
         if (a) {
             if (servoTop.getPosition() == SERVO_TOP_MIN) servoTop.setPosition(SERVO_TOP_MAX);
             else servoTop.setPosition(SERVO_TOP_MIN);
             Thread.sleep(500);
+        }
+        if (x) {
+            servoOffset = 0;
         }
         if (dpad_up && SERVO_BOTTOM_DEFAULT + servoOffset < SERVO_BOTTOM_MAX) {
             servoOffset += SERVO_BOTTOM_CHANGE;

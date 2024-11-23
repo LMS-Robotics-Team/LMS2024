@@ -31,20 +31,18 @@ public class Arm {
         servoRight.setPosition(SERVO_DEFAULT);
     }
 
-    public static void handleInput(float left_stick_y, boolean left_bumper, boolean right_bumper) {
-        if (SERVO_DEFAULT + servoOffset > SERVO_DRIVE_THRESHOLD_MIN
-                && SERVO_DEFAULT + servoOffset < SERVO_DRIVE_THRESHOLD_MAX) {
+    public static void handleInput(float left_stick_y, boolean left_bumper, boolean right_bumper, boolean y) {
+        if ((SERVO_DEFAULT + servoOffset > SERVO_DRIVE_THRESHOLD_MIN
+                && SERVO_DEFAULT + servoOffset < SERVO_DRIVE_THRESHOLD_MAX) || y) {
             motorLeft.setPower(left_stick_y);
             motorRight.setPower(left_stick_y);
         }
 
-        if (left_stick_y == 0) {
-            if (left_bumper && SERVO_DEFAULT + servoOffset > SERVO_MIN) {
-                servoOffset -= SERVO_CHANGE;
-            }
-            if (right_bumper && SERVO_DEFAULT + servoOffset < SERVO_MAX) {
-                servoOffset += SERVO_CHANGE;
-            }
+        if (left_bumper && SERVO_DEFAULT + servoOffset > SERVO_MIN) {
+            servoOffset -= SERVO_CHANGE;
+        }
+        if (right_bumper && SERVO_DEFAULT + servoOffset < SERVO_MAX) {
+            servoOffset += SERVO_CHANGE;
         }
 
         servoLeft.setPosition(SERVO_DEFAULT + servoOffset);

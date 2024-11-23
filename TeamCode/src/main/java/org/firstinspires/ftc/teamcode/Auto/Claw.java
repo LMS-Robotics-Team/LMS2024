@@ -14,8 +14,6 @@ public class Claw {
         servoBottomRight = hardwareMap.get(Servo.class, "clawServoBottomRight");
         servoTop = hardwareMap.get(Servo.class, "clawServoTop");
 
-        servoBottomLeft.setPosition(SERVO_BOTTOM_DEFAULT);
-        servoBottomRight.setPosition(SERVO_BOTTOM_DEFAULT);
         servoTop.setPosition(SERVO_TOP_MAX);
     }
 
