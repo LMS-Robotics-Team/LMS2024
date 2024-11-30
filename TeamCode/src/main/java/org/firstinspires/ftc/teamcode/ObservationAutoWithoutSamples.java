@@ -20,8 +20,11 @@ public class ObservationAutoWithoutSamples extends LinearOpMode {
         Claw.setBottomOffset(0);
         sleep(500);
 
+        // Wait for other team
+        sleep(2000);
+
         // Tokyo Drift AKA pivot robot along BR wheel to align with submersible in one move
-        Drive.moveTo(-1150, 1150, 0, 1150, 0.5);
+        Drive.moveTo(-1150, 1150, 0, -1150, 0.5);
 
         // Add specimen to bar
         Drive.moveTo(400, 400, 400, 400, 0.5);

@@ -17,7 +17,7 @@ public class Claw {
 
         servoBottomLeft.setPosition(SERVO_BOTTOM_DEFAULT);
         servoBottomRight.setPosition(SERVO_BOTTOM_DEFAULT);
-        servoTop.setPosition(SERVO_TOP_MIN);
+        servoTop.setPosition(SERVO_TOP_MAX);
     }
 
     public static void handleInput(boolean a, boolean x, boolean dpad_up, boolean dpad_down) throws InterruptedException {
